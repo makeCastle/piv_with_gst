@@ -82,29 +82,6 @@ void opticalMethod(cimg_library::CImg<unsigned int> image1, cimg_library::CImg<u
         SNR.push_back(row);
     }
 
-  /*std::vector<std::vector<double>> a1; std::vector<std::vector<double>> a2;
-    for (int i = 0; i < 100; i++)
-    {
-        std::vector<double> row1;  std::vector<double> row2;
-        for (int j = 0; j < 100; j++)
-        {
-            if (i == 48 && j == 49)
-            {
-                row1.push_back(1);
-                row2.push_back(0);
-            }
-            else if ((i == 48 && j == 53) || (i == 48 && j == 54)) {
-                row1.push_back(0);
-                row2.push_back(0.5);
-            }
-            else {
-                row1.push_back(0);
-                row2.push_back(0);
-            }
-        }
-        a1.push_back(row1); a2.push_back(row2);
-    }*/
-
     std::vector<double> Nx2 = Nx1; // x - size of IW
     std::vector<double> Ny2 = Ny1; // y - size of IW
 
@@ -225,7 +202,11 @@ void opticalMethod(cimg_library::CImg<unsigned int> image1, cimg_library::CImg<u
                     std::vector<double> rowf1;
                     for (int j = (int)x_lefAndRig[0]; j < (int)x_lefAndRig[2] + 1; j++)
                     {
-                        rowf1.push_back(im1[i][j]);
+			if ((i > image1.height() || i < 0) || (j > image1.width() || j < 0)) {
+				rowf1.push_back(0.0);
+			} else { 
+                        	rowf1.push_back(im1[i][j]);
+			}
                     }
                     f1.push_back(rowf1);
                 }
@@ -234,7 +215,11 @@ void opticalMethod(cimg_library::CImg<unsigned int> image1, cimg_library::CImg<u
                     std::vector<double> rowf2;
                     for (int j = (int)x_lefAndRig[1]; j < (int)x_lefAndRig[3] + 1; j++)
                     {
-                        rowf2.push_back(im2[i][j]);
+			if ((i > image2.height() || i < 0) || (j > image2.width() || j < 0)) {
+				rowf2.push_back(0.0);
+			} else { 
+                        	rowf2.push_back(im2[i][j]);
+			}
                     }
                     f2.push_back(rowf2);
                 }
