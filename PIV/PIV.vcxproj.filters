@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Тест 1">
+      <UniqueIdentifier>{da2a8fc3-175c-4661-aae8-8abff7ab6a9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Тест 2">
+      <UniqueIdentifier>{97b89965-775a-443f-8cd9-9ca0625775fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Тест 3">
+      <UniqueIdentifier>{afa90ed9-fdee-4f27-9f53-72ecb632e7e3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\mesh.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\field.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="velocity.txt" />
+    <Text Include="ROI.txt" />
+    <Text Include="shift1.txt">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Text>
+    <Text Include="shift2.txt">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Text>
+    <Text Include="shift3.txt">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Text>
+    <Text Include="shift4.txt">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Text>
+    <Text Include="shift5.txt">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Text>
+    <Text Include="shift6.txt">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Text>
+    <Text Include="shift7.txt">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Text>
+    <Text Include="shift8.txt">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Text>
+    <Text Include="shift9.txt">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Text>
+    <Text Include="shift10.txt">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Text>
+    <Text Include="shift21.txt">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Text>
+    <Text Include="shift22.txt">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Text>
+    <Text Include="shift23.txt">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Text>
+    <Text Include="shift24.txt">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Text>
+    <Text Include="shift25.txt">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Text>
+    <Text Include="shift26.txt">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Text>
+    <Text Include="shift27.txt">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Text>
+    <Text Include="shift28.txt">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Text>
+    <Text Include="shift29.txt">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Text>
+    <Text Include="shift210.txt">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Text>
+    <Text Include="shift31.txt">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Text>
+    <Text Include="shift32.txt">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Text>
+    <Text Include="shift33.txt">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Text>
+    <Text Include="shift34.txt">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Text>
+    <Text Include="shift35.txt">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Text>
+    <Text Include="shift36.txt">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Text>
+    <Text Include="shift37.txt">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Text>
+    <Text Include="shift38.txt">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Text>
+    <Text Include="shift39.txt">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Text>
+    <Text Include="shift310.txt">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Text>
+    <Text Include="mesh_test.txt" />
+    <Text Include="ROI_test.txt" />
+    <Text Include="area_test.txt" />
+    <Text Include="a1.txt" />
+    <Text Include="a2.txt" />
+    <Text Include="a1_test.txt" />
+    <Text Include="a2_test.txt" />
+    <Text Include="mesh.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="meshFast.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="opticalMethod.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="CImg.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="info.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ZNCC.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="MedianTest.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\1.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\2.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\8.bmp">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\9.bmp">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\10.bmp">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\1.bmp">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\2.bmp">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\3.bmp">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\4.bmp">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\5.bmp">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\6.bmp">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\7.bmp">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\11.bmp">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\1.bmp">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\2.bmp">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\3.bmp">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\4.bmp">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\5.bmp">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\6.bmp">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\7.bmp">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\8.bmp">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\9.bmp">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\10.bmp">
+      <Filter>Файлы ресурсов\Тест 2</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\11.bmp">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\1.bmp">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\2.bmp">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\3.bmp">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\4.bmp">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\5.bmp">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\6.bmp">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\7.bmp">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\8.bmp">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\9.bmp">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\10.bmp">
+      <Filter>Файлы ресурсов\Тест 3</Filter>
+    </Image>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\11.bmp">
+      <Filter>Файлы ресурсов\Тест 1</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

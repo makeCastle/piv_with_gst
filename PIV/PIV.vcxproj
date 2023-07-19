@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{1c58fd58-a150-428b-89dd-5870e8014617}</ProjectGuid>
+    <RootNamespace>PIV</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <Profile>true</Profile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <Profile>true</Profile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <Profile>true</Profile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <Profile>true</Profile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Source.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\field.txt" />
+    <Text Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\mesh.txt" />
+    <Text Include="a1.txt" />
+    <Text Include="a1_test.txt" />
+    <Text Include="a2.txt" />
+    <Text Include="a2_test.txt" />
+    <Text Include="area_test.txt" />
+    <Text Include="mesh.txt" />
+    <Text Include="mesh_test.txt" />
+    <Text Include="ROI.txt" />
+    <Text Include="ROI_test.txt" />
+    <Text Include="shift1.txt" />
+    <Text Include="shift10.txt" />
+    <Text Include="shift2.txt" />
+    <Text Include="shift21.txt" />
+    <Text Include="shift210.txt" />
+    <Text Include="shift22.txt" />
+    <Text Include="shift24.txt" />
+    <Text Include="shift25.txt" />
+    <Text Include="shift26.txt" />
+    <Text Include="shift27.txt" />
+    <Text Include="shift28.txt" />
+    <Text Include="shift29.txt" />
+    <Text Include="shift3.txt" />
+    <Text Include="shift23.txt" />
+    <Text Include="shift31.txt" />
+    <Text Include="shift310.txt" />
+    <Text Include="shift32.txt" />
+    <Text Include="shift33.txt" />
+    <Text Include="shift34.txt" />
+    <Text Include="shift35.txt" />
+    <Text Include="shift36.txt" />
+    <Text Include="shift37.txt" />
+    <Text Include="shift38.txt" />
+    <Text Include="shift39.txt" />
+    <Text Include="shift5.txt" />
+    <Text Include="shift6.txt" />
+    <Text Include="shift7.txt" />
+    <Text Include="shift8.txt" />
+    <Text Include="shift9.txt" />
+    <Text Include="velocity.txt" />
+    <Text Include="shift4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CImg.h" />
+    <ClInclude Include="info.h" />
+    <ClInclude Include="MedianTest.h" />
+    <ClInclude Include="meshFast.h" />
+    <ClInclude Include="opticalMethod.h" />
+    <ClInclude Include="ZNCC.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\1.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\2.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\1.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\10.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\11.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\2.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\3.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\4.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\5.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\6.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\7.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\8.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 1\9.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\1.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\10.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\11.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\2.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\3.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\4.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\5.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\6.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\7.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\8.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 2\9.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\1.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\10.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\11.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\2.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\3.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\4.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\5.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\6.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\7.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\8.bmp" />
+    <Image Include="..\..\..\..\OneDrive\Документы\информатика, математика и физика\Курсовая\Тест 3\9.bmp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,218 @@
+﻿  Source.cpp
+C:\Users\1\source\repos\Course work\PIV\meshFast.h(9,45): warning C4244: аргумент: преобразование "double" в "_Ty", возможна потеря данных
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\1\source\repos\Course work\PIV\meshFast.h(12,45): warning C4244: аргумент: преобразование "double" в "_Ty", возможна потеря данных
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\1\source\repos\Course work\PIV\ZNCC.h(181,19): warning C4244: аргумент: преобразование "double" в "const unsigned __int64", возможна потеря данных
+C:\Users\1\source\repos\Course work\PIV\ZNCC.h(181,26): warning C4244: аргумент: преобразование "double" в "const unsigned __int64", возможна потеря данных
+C:\Users\1\source\repos\Course work\PIV\ZNCC.h(182,21): warning C4244: аргумент: преобразование "double" в "const unsigned __int64", возможна потеря данных
+C:\Users\1\source\repos\Course work\PIV\ZNCC.h(182,28): warning C4244: аргумент: преобразование "double" в "const unsigned __int64", возможна потеря данных
+C:\Users\1\source\repos\Course work\PIV\ZNCC.h(183,21): warning C4244: аргумент: преобразование "double" в "const unsigned __int64", возможна потеря данных
+C:\Users\1\source\repos\Course work\PIV\ZNCC.h(183,26): warning C4244: аргумент: преобразование "double" в "const unsigned __int64", возможна потеря данных
+C:\Users\1\source\repos\Course work\PIV\ZNCC.h(184,21): warning C4244: аргумент: преобразование "double" в "const unsigned __int64", возможна потеря данных
+C:\Users\1\source\repos\Course work\PIV\ZNCC.h(184,28): warning C4244: аргумент: преобразование "double" в "const unsigned __int64", возможна потеря данных
+C:\Users\1\source\repos\Course work\PIV\ZNCC.h(185,19): warning C4244: аргумент: преобразование "double" в "const unsigned __int64", возможна потеря данных
+C:\Users\1\source\repos\Course work\PIV\ZNCC.h(185,24): warning C4244: аргумент: преобразование "double" в "const unsigned __int64", возможна потеря данных
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(37,12): warning C4244: return: преобразование "double" в "int", возможна потеря данных
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(59,15): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(218,26): warning C4244: инициализация: преобразование "_Ty" в "int", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(218,74): warning C4244: инициализация: преобразование "_Ty" в "int", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(219,26): warning C4244: инициализация: преобразование "_Ty" в "int", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(219,74): warning C4244: инициализация: преобразование "_Ty" в "int", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(242,54): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(242,74): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(242,109): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(242,129): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(242,164): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(242,184): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(242,219): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(242,239): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(243,54): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(243,74): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(243,109): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(243,129): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(243,164): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(243,184): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(243,219): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(243,239): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(244,56): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(244,76): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(244,111): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(244,131): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(244,166): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(244,186): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(244,221): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(244,241): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(245,56): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(245,76): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(245,111): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(245,131): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(245,166): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(245,186): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(245,221): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(245,241): warning C4244: аргумент: преобразование "_Ty" в "const unsigned __int64", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(248,111): warning C4244: аргумент: преобразование "_Ty" в "int", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\1\source\repos\Course work\PIV\opticalMethod.h(248,76): warning C4244: аргумент: преобразование "_Ty" в "int", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+  Создание кода
+  Previous IPDB not found, fall back to full compilation.
+  All 1064 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  PIV.vcxproj -> C:\Users\1\source\repos\Course work\x64\Release\PIV.exe
