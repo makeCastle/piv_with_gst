@@ -38,8 +38,8 @@ int max(std::vector<int> a) {
 }
 
 
-void opticalMethod(cimg_library::CImg<unsigned int> image1, cimg_library::CImg<unsigned int> image2, std::vector<double> meshY, std::vector<double> meshX, std::vector<double> y_area_top,
-    std::vector<double> x_area_rig, std::vector<double> y_area_bot, std::vector<double> x_area_lef, std::vector<double> Ny1, std::vector<double> Nx1) {
+void opticalMethod(cimg_library::CImg<unsigned int> image1, cimg_library::CImg<unsigned int> image2, double* meshY, double* meshX, double* y_area_top,
+    double* x_area_rig, double* y_area_bot, double* x_area_lef, double* Ny1, double* Nx1, int count) {
 
     double scale = 1.0;
     double e = 0.000000001;
@@ -56,89 +56,84 @@ void opticalMethod(cimg_library::CImg<unsigned int> image1, cimg_library::CImg<u
     // std::vector<double> y_area_bot - bottom-size of serching area
     // std::vector<double> x_area_lef - left-size of serching are
 
-    int count = Nx1.size();
+    //int count = sizeof(*Nx1) / sizeof(Nx1[0]);
 
     // int Nx_max = max(Nx1);
      //int Ny_max = max(Ny1);
-    std::vector<int> meshXint = meshFast(count, Nx1, meshX); // acceleration without interpolation
-    std::vector<int> meshYint = meshFast(count, Ny1, meshY); // acceleration without interpolation
+    int* meshXint = meshFast(count, Nx1, meshX); // acceleration without interpolation
+    int* meshYint = meshFast(count, Ny1, meshY); // acceleration without interpolation
 
     // END - number of points in x - and y - directions for median test
 
-    //int rad1[2] = { (meshXint[1] - meshXint[0]), (meshYint[Nx] - meshYint[0]) }; // дл€ увеличени€ окрестности поиска
-    //int rad2[2] = { 1, 1 }; // узла дл€ интерпол€ции geedfree
-
-    std::vector<double> x = { 0.0, 0.0 }; std::vector<double> y = x; std::vector<double> dx = x; std::vector<double> dy = x;
-    std::vector<double> leftX = x; std::vector<double> topY = x; // при интерпол€ции интенсивности
-    std::vector<double> uPredict(count, 0.0); // prediction of x - displacement
-    std::vector<double> vPredict(count, 0.0); // prediction of y - displacement
-    std::vector<double> u1;
-    std::vector<double> v1;
-    std::vector<double> u2;
-    std::vector<double> v2;
-    std::vector<std::vector<double>> SNR; // ratio of 2 local maximus of ZNCC
-    for (int i = 0; i < count; i++) {
-        std::vector<double> row(1, 0.0);
-        SNR.push_back(row);
+    //double* x{ new double[2]{ 0.0, 0.0 } };  double* y{ new double[2] { 0.0, 0.0 } };  double* dx{ new double[2] { 0.0, 0.0 } };  double* dy{ new double[2] { 0.0, 0.0 } };
+    //y = x; dx = x; dy = x;
+    //double* leftx = x; double* topy = x; // при интерпол€ции интенсивности
+    double* uPredict{ new double[count] {} }; // prediction of x - displacement
+    double* vPredict{ new double[count] {} }; // prediction of y - displacement
+    double* u1{ new double[count] {} };
+    double* v1{ new double[count] {} };
+    double* u2{ new double[count] {} };
+    double* v2{ new double[count] {} };
+    double** SNR{ new double*[count] {} }; // ratio of 2 local maximus of ZNCC
+    for (int i = 0; i < count; i++)
+    {
+        SNR[i] = new double[1] {};
     }
 
-    std::vector<double> Nx2 = Nx1; // x - size of IW
-    std::vector<double> Ny2 = Ny1; // y - size of IW
+    double* Nx2 = Nx1; // x - size of IW
+    double* Ny2 = Ny1; // y - size of IW
 
-    std::vector<std::vector<double>> im1; std::vector<std::vector<double>> im2; // arrays of the whole images
+    double** im1{ new double* [image1.height()] {} }; double** im2{ new double* [image2.height()] {} }; // arrays of the whole images
+
     for (int i = 0; i < image1.height(); i++)
     {
-        std::vector<double> row1;
-        for (int j = 0; j < image1.width(); j++)
-        {
-            row1.push_back(double(image1(j, i)));
-        }
-        im1.push_back(row1);
+        im1[i] = new double[image1.width()] {};
     }
 
     for (int i = 0; i < image2.height(); i++)
     {
-        std::vector<double> row2;
+        im2[i] = new double[image2.width()] {};
+    }
+
+    for (int i = 0; i < image1.height(); i++)
+    {
+        for (int j = 0; j < image1.width(); j++)
+        {
+            im1[i][j] = double(image1(j, i));
+        }
+    }
+
+    for (int i = 0; i < image2.height(); i++)
+    {
         for (int j = 0; j < image2.width(); j++)
         {
-            row2.push_back(double(image2(j, i)));
+            im2[i][j] = double(image2(j, i));
         }
-        im2.push_back(row2);
     }
 
     int Iby = image2.height();
     int Ibx = image2.width();
 
-    std::vector<std::vector<std::vector<double>>> GSTable1 = GST(im1, Iby, Ibx);
-    std::vector<std::vector<std::vector<double>>> GSTable2 = GST(im2, Iby, Ibx);
+    double*** GSTable1 = GST(im1, Iby, Ibx);
+    double*** GSTable2 = GST(im2, Iby, Ibx);
 
     // GlobalSums11 - GST for image 1
     // GlobalSums12 - GST for image 2
     // GlobalSums21 - GST of squares for image 1
     // GlobalSums22 - GST of squares image 2
 
-    std::vector<std::vector<double>> GlobalSums11;
-    std::vector<std::vector<double>> GlobalSums12;
-    std::vector<std::vector<double>> GlobalSums21;
-    std::vector<std::vector<double>> GlobalSums22;
+    double** GlobalSums11{ new double* [Iby] {} }; // memory allocation
+    double** GlobalSums12{ new double* [Iby] {} };
+    double** GlobalSums21{ new double* [Iby] {} };
+    double** GlobalSums22{ new double* [Iby] {} };
 
-    GlobalSums11.resize(Iby); // memory allocation
-    GlobalSums12.resize(Iby);
-    GlobalSums21.resize(Iby);
-    GlobalSums22.resize(Iby);
-    for (int i = 0; i < Iby; ++i) {
-        GlobalSums11[i].resize(Ibx);
+    for (int i = 0; i < Iby; i++)
+    {
+        GlobalSums11[i] = new double[Ibx] {};
+        GlobalSums12[i] = new double[Ibx] {};
+        GlobalSums21[i] = new double[Ibx] {};
+        GlobalSums22[i] = new double[Ibx] {};
     }
-    for (int i = 0; i < Iby; ++i) {
-        GlobalSums12[i].resize(Ibx);
-    }
-    for (int i = 0; i < Iby; ++i) {
-        GlobalSums21[i].resize(Ibx);
-    }
-    for (int i = 0; i < Iby; ++i) {
-        GlobalSums22[i].resize(Ibx);
-    }
-
 
     for (int i = 0; i < Iby; i++)
     {
@@ -154,21 +149,27 @@ void opticalMethod(cimg_library::CImg<unsigned int> image1, cimg_library::CImg<u
     double aver1 = 0.0; double D1 = 0.0; // the average and dispersion of the 1th image
     double aver2 = 0.0; double D2 = 0.0; // the average and dispersion of the 2th image
 
+    aver1 = GlobalSums11[image1.height() - 1][image1.width() - 1] / (image1.height() * image1.width()) + e;
+    aver2 = GlobalSums12[image2.height() - 2][image2.width() - 1] / (image2.height() * image2.width()) + e;
+    D1 = sqrt(GlobalSums21[image1.height() - 1][image1.width() - 1] + image1.height() * image1.width() * aver1 * aver1) + e;
+    D2 = sqrt(GlobalSums22[image2.height() - 1][image2.width() - 1] + image2.height() * image2.width() * aver2 * aver2) + e;
+
+
     // -BEGIN - first iteration of displacement calculation
     if (it == 1) {
 
-        for (int i = 0; i < 1; i++)
+        for (int q = 0; q < 1; q++)
         {
-            std::cout << "number of iteration is " << it << "   number of frame is " << i << std::endl;
+            std::cout << "number of iteration is " << it << "   number of frame is " << q << std::endl;
 
-            int ii = i; // current image
+            int ii = q; // current image
 
 
 
 
             for (int p = 0; p < count; p++)
             {
-                std::vector<double> x_lefAndRig; std::vector<double> y_topAndBot;
+                double x_lefAndRig[4]; double y_topAndBot[4];
                 // x_lefAndRig[0] - left x - coordinate of 1st image
                 // x_lefAndRig[1] - left x - coordinate of 2st image
                 // x_lefAndRig[2] - right x - coordinate of 1st image
@@ -179,66 +180,142 @@ void opticalMethod(cimg_library::CImg<unsigned int> image1, cimg_library::CImg<u
                 // y_topAndBot[2] - bottom y - coordinate of 1st image
                 // y_topAndBot[3] - bottom y - coordinate of 2nd image
 
-                x_lefAndRig.push_back(meshXint[p] - Nx2[p] / 2.0 + 0.5); // left x - coordinate of 1st image
-                x_lefAndRig.push_back(x_lefAndRig[0] - x_area_lef[p]); // left x - coordinate of 2nd image
-                x_lefAndRig.push_back(x_lefAndRig[0] + Nx2[p] - 1.0); // right x - coordinate of 1st image
-                x_lefAndRig.push_back(x_lefAndRig[2] + x_area_rig[p]); // right x - coordinate of 2nd image
 
-                y_topAndBot.push_back(meshYint[p] - Ny2[p] / 2.0 + 0.5); // top y - coordinate of 1st image
-                y_topAndBot.push_back(y_topAndBot[0] - y_area_top[p]); // top y - coordinate of 2st image
-                y_topAndBot.push_back(y_topAndBot[0] + Ny2[p] - 1.0); // bottom y - coordinate of 1st image
-                y_topAndBot.push_back(y_topAndBot[2] + y_area_bot[p]); // bottom y - coordinate of 2st image
+                x_lefAndRig[0] = meshXint[p] - Nx2[p] / 2.0 + 0.5; // left x - coordinate of 1st image
+                x_lefAndRig[1] = x_lefAndRig[0] - x_area_lef[p]; // left x - coordinate of 2nd image
+                x_lefAndRig[2] = x_lefAndRig[0] + Nx2[p] - 1.0; // right x - coordinate of 1st image
+                x_lefAndRig[3] = x_lefAndRig[2] + x_area_rig[p]; // right x - coordinate of 2nd image
 
-                std::vector<std::vector<double>> f1;
-                std::vector<std::vector<double>> f2;
+                y_topAndBot[0] = meshYint[p] - Ny2[p] / 2.0 + 0.5; // top y - coordinate of 1st image
+                y_topAndBot[1] = y_topAndBot[0] - y_area_top[p]; // top y - coordinate of 2st image
+                y_topAndBot[2] = y_topAndBot[0] + Ny2[p] - 1.0; // bottom y - coordinate of 1st image
+                y_topAndBot[3] = y_topAndBot[2] + y_area_bot[p]; // bottom y - coordinate of 2st image
 
                 int Nxf1 = x_lefAndRig[2] - x_lefAndRig[0] + 1; int Nxf2 = x_lefAndRig[3] - x_lefAndRig[1] + 1;
                 int Nyf1 = y_topAndBot[2] - y_topAndBot[0] + 1; int Nyf2 = y_topAndBot[3] - y_topAndBot[1] + 1;
 
+                int l_border1 = (x_lefAndRig[0])*(copysign(1, x_lefAndRig[0]) - 1)*0.5;
+                int r_border1 = (Nxf1 * 0.5 * (copysign(1, Ibx - x_lefAndRig[2]) +
+                    copysign(1, Ibx - x_lefAndRig[2]) * copysign(1, Ibx - x_lefAndRig[2]))) + 0.5 * (Ibx - (int)abs(x_lefAndRig[0]) - 1) *
+                    (copysign(1, x_lefAndRig[2] - Ibx) + copysign(1, x_lefAndRig[2] - Ibx) * copysign(1, x_lefAndRig[2] - Ibx));
+                int t_border1 = y_topAndBot[0] * (copysign(1, y_topAndBot[0]) - 1) * 0.5;
+                int b_border1 = (Nyf1 * 0.5 * (copysign(1, Iby - y_topAndBot[2]) + 
+                    copysign(1, Iby - y_topAndBot[2]) * copysign(1, Iby - y_topAndBot[2]))) + 0.5 * (Iby - (int)abs(y_topAndBot[0]) - 1) * 
+                    (copysign(1, y_topAndBot[2] - Iby) + copysign(1, y_topAndBot[2] - Iby) * copysign(1, y_topAndBot[2] - Iby));
+                
+                int l_border2 = (x_lefAndRig[1]) * (copysign(1, x_lefAndRig[1]) - 1) * 0.5;
+                int r_border2 = (Nxf2 * 0.5 * (copysign(1, Ibx - x_lefAndRig[3]) +
+                    copysign(1, Ibx - x_lefAndRig[3]) * copysign(1, Ibx - x_lefAndRig[3]))) + 0.5 * (Ibx - (int)abs(x_lefAndRig[1]) - 1) *
+                    (copysign(1, x_lefAndRig[3] - Ibx) + copysign(1, x_lefAndRig[3] - Ibx) * copysign(1, x_lefAndRig[3] - Ibx));
+                int t_border2 = y_topAndBot[1] * (copysign(1, y_topAndBot[1]) - 1) * 0.5;
+                int b_border2 = (Nyf2 * 0.5 * (copysign(1, Iby - y_topAndBot[3]) +
+                    copysign(1, Iby - y_topAndBot[3]) * copysign(1, Iby - y_topAndBot[3]))) + 0.5 * (Iby - (int)abs(y_topAndBot[1]) - 1) *
+                    (copysign(1, y_topAndBot[3] - Iby) + copysign(1, y_topAndBot[3] - Iby) * copysign(1, y_topAndBot[3] - Iby));
 
-
-                for (int i = (int)y_topAndBot[0]; i < (int)y_topAndBot[2] + 1; i++)
+                double** f1{ new double* [Nyf1] {} };
+                double** f2{ new double* [Nyf2] {} };
+                for (int i = 0; i < Nyf1; i++)
                 {
-                    std::vector<double> rowf1;
+                    f1[i] = new double[Nxf1] {};
+                }
+                for (int i = 0; i < Nyf2; i++)
+                {
+                    f2[i] = new double[Nxf2] {};
+                }
+
+                for (int i = 0; i < Nyf1; i++)
+                {
+                    for (int j = 0; j < Nxf1; j++)
+                    {
+                        f1[i][j] = 0.0;
+                    }
+                }
+                for (int i = 0; i < Nyf2; i++)
+                {
+                    for (int j = 0; j < Nxf2; j++)
+                    {
+                        f2[i][j] = 0.0;
+                    }
+                }
+
+                for (int i = t_border1; i < b_border1; i++)
+                {
+                    for (int j = l_border1; j < r_border1; j++)
+                    {
+                        f1[i][j] = im1[i + (int)y_topAndBot[0]][j + (int)x_lefAndRig[0]];
+                    }
+                }
+                for (int i = t_border2; i < b_border2; i++)
+                {
+                    for (int j = l_border2; j < r_border2; j++)
+                    {
+                        f2[i][j] = im2[i + (int)y_topAndBot[1]][j + (int)x_lefAndRig[1]];
+                    }
+                }
+
+                /*for (int i = (int)y_topAndBot[0]; i < (int)y_topAndBot[2] + 1; i++)
+                //{
                     for (int j = (int)x_lefAndRig[0]; j < (int)x_lefAndRig[2] + 1; j++)
                     {
-			if ((i > image1.height() || i < 0) || (j > image1.width() || j < 0)) {
-				rowf1.push_back(0.0);
-			} else { 
-                        	rowf1.push_back(im1[i][j]);
-			}
+                         f1[i - (int)y_topAndBot[0]][j - (int)x_lefAndRig[0]] = im1[i][j];
                     }
-                    f1.push_back(rowf1);
                 }
                 for (int i = (int)y_topAndBot[1]; i < (int)y_topAndBot[3] + 1; i++)
                 {
-                    std::vector<double> rowf2;
                     for (int j = (int)x_lefAndRig[1]; j < (int)x_lefAndRig[3] + 1; j++)
                     {
-			if ((i > image2.height() || i < 0) || (j > image2.width() || j < 0)) {
-				rowf2.push_back(0.0);
-			} else { 
-                        	rowf2.push_back(im2[i][j]);
-			}
+                        f2[i - (int)y_topAndBot[1]][j - (int)x_lefAndRig[1]] = im2[i][j];
                     }
-                    f2.push_back(rowf2);
+                }*/
+
+                /*for (int i = 0; i < Nyf1; i++)
+                {
+                    for (int j = 0; j < Nxf1; j++)
+                    {
+                        std::cout << f1[i][j] << "  ";
+                    }
+                    std::cout << std::endl;
                 }
+                std::cout << std::endl; std::cout << std::endl;
+                for (int i = 0; i < Nyf2; i++)
+                {
+                    for (int j = 0; j < Nxf2; j++)
+                    {
+                        std::cout << f2[i][j] << "  ";
+                    }
+                    std::cout << std::endl;
+                }*/
 
-                aver1 = (GlobalSums11[y_topAndBot[2] - 1][x_lefAndRig[2] - 1] - GlobalSums11[y_topAndBot[2] - 1][x_lefAndRig[0] - 1] - GlobalSums11[y_topAndBot[0] - 1][x_lefAndRig[2] - 1] + GlobalSums11[y_topAndBot[0] - 1][x_lefAndRig[0] - 1]) / (Nyf1 * Nxf1) + e;
-                aver2 = (GlobalSums12[y_topAndBot[2] - 1][x_lefAndRig[2] - 1] - GlobalSums12[y_topAndBot[2] - 1][x_lefAndRig[0] - 1] - GlobalSums12[y_topAndBot[0] - 1][x_lefAndRig[2] - 1] + GlobalSums12[y_topAndBot[0] - 1][x_lefAndRig[0] - 1]) / (Nyf1 * Nxf1) + e;
-                D1 = sqrt((GlobalSums21[y_topAndBot[2] - 1][x_lefAndRig[2] - 1] - GlobalSums21[y_topAndBot[2] - 1][x_lefAndRig[0] - 1] - GlobalSums21[y_topAndBot[0] - 1][x_lefAndRig[2] - 1] + GlobalSums21[y_topAndBot[0] - 1][x_lefAndRig[0] - 1]) + Nyf1 * Nxf1 * aver1 * aver1) + e;
-                D2 = sqrt((GlobalSums22[y_topAndBot[2] - 1][x_lefAndRig[2] - 1] - GlobalSums22[y_topAndBot[2] - 1][x_lefAndRig[0] - 1] - GlobalSums22[y_topAndBot[0] - 1][x_lefAndRig[2] - 1] + GlobalSums22[y_topAndBot[0] - 1][x_lefAndRig[0] - 1]) + Nyf1 * Nxf1 * aver2 * aver2) + e;
+                /*aver1 = (GlobalSums11[(int)y_topAndBot[2] - 1][(int)x_lefAndRig[2] - 1] - GlobalSums11[(int)y_topAndBot[2] - 1][(int)x_lefAndRig[0] - 1] - GlobalSums11[(int)y_topAndBot[0] - 1][(int)x_lefAndRig[2] - 1] + GlobalSums11[(int)y_topAndBot[0] - 1][(int)x_lefAndRig[0] - 1]) / (Nyf1 * Nxf1) + e;
+                aver2 = (GlobalSums12[(int)y_topAndBot[2] - 1][(int)x_lefAndRig[2] - 1] - GlobalSums12[(int)y_topAndBot[2] - 1][(int)x_lefAndRig[0] - 1] - GlobalSums12[(int)y_topAndBot[0] - 1][(int)x_lefAndRig[2] - 1] + GlobalSums12[(int)y_topAndBot[0] - 1][(int)x_lefAndRig[0] - 1]) / (Nyf1 * Nxf1) + e;
+                D1 = sqrt((GlobalSums21[(int)y_topAndBot[2] - 1][(int)x_lefAndRig[2] - 1] - GlobalSums21[(int)y_topAndBot[2] - 1][(int)x_lefAndRig[0] - 1] - GlobalSums21[(int)y_topAndBot[0] - 1][(int)x_lefAndRig[2] - 1] + GlobalSums21[(int)y_topAndBot[0] - 1][(int)x_lefAndRig[0] - 1]) + Nyf1 * Nxf1 * aver1 * aver1) + e;
+                D2 = sqrt((GlobalSums22[(int)y_topAndBot[2] - 1][(int)x_lefAndRig[2] - 1] - GlobalSums22[(int)y_topAndBot[2] - 1][(int)x_lefAndRig[0] - 1] - GlobalSums22[(int)y_topAndBot[0] - 1][(int)x_lefAndRig[2] - 1] + GlobalSums22[(int)y_topAndBot[0] - 1][(int)x_lefAndRig[0] - 1]) + Nyf1 * Nxf1 * aver2 * aver2) + e;*/
 
+                /*aver1 = (GlobalSums11[b_border1 - 1 + (int)abs(y_topAndBot[0])][r_border1 - 1 + (int)abs(x_lefAndRig[0])] - GlobalSums11[b_border1 - 1 + (int)abs(y_topAndBot[0])][l_border1 - 1 + (int)abs(x_lefAndRig[0])] - GlobalSums11[t_border1 - 1 + (int)abs(y_topAndBot[0])][r_border1 - 1 + (int)abs(x_lefAndRig[0])] + GlobalSums11[t_border1 - 1 + (int)abs(y_topAndBot[0])][l_border1 - 1 + (int)abs(x_lefAndRig[0])]) / (Nyf1 * Nxf1) + e;
+                aver2 = (GlobalSums12[b_border2 - 1 + (int)abs(y_topAndBot[1])][r_border2 - 1 + (int)abs(x_lefAndRig[1])] - GlobalSums12[b_border2 - 1 + (int)abs(y_topAndBot[1])][l_border2 - 1 + (int)abs(x_lefAndRig[1])] - GlobalSums12[t_border2 - 1 + (int)abs(y_topAndBot[1])][r_border2 - 1 + (int)abs(x_lefAndRig[1])] + GlobalSums12[t_border2 - 1 + (int)abs(y_topAndBot[1])][l_border2 - 1 + (int)abs(x_lefAndRig[1])]) / (Nyf1 * Nxf1) + e;
+                D1 = sqrt((GlobalSums21[b_border1 - 1 + (int)abs(y_topAndBot[0])][r_border1 - 1 + (int)abs(x_lefAndRig[0])] - GlobalSums21[b_border1 - 1 + (int)abs(y_topAndBot[0])][l_border1 - 1 + (int)abs(x_lefAndRig[0])] - GlobalSums21[t_border1 - 1 + (int)abs(y_topAndBot[0])][r_border1 - 1 + (int)abs(x_lefAndRig[0])] + GlobalSums21[t_border1 - 1 + (int)abs(y_topAndBot[0])][l_border1 - 1 + (int)abs(x_lefAndRig[0])]) + Nyf1 * Nxf1 * aver1 * aver1) + e;
+                D2 = sqrt((GlobalSums22[b_border2 - 1 + (int)abs(y_topAndBot[1])][r_border2 - 1 + (int)abs(x_lefAndRig[1])] - GlobalSums22[b_border2 - 1 + (int)abs(y_topAndBot[1])][l_border2 - 1 + (int)abs(x_lefAndRig[1])] - GlobalSums22[t_border2 - 1 + (int)abs(y_topAndBot[1])][r_border2 - 1 + (int)abs(x_lefAndRig[1])] + GlobalSums22[t_border2 - 1 + (int)abs(y_topAndBot[1])][l_border2 - 1 + (int)abs(x_lefAndRig[1])]) + Nyf1 * Nxf1 * aver2 * aver2) + e;*/
 
-                std::vector<double> ZNCC = pivZNCC(f1, f2, (x_lefAndRig[0] - x_lefAndRig[1]), (y_topAndBot[0] - y_topAndBot[1]), Nxf1, Nxf2, Nyf1, Nyf2, aver1, aver2, D1, D2);
-                u1.push_back(ZNCC[0]); v1.push_back(ZNCC[1]); SNR[p][ii] = ZNCC[2];
+                double* ZNCC = pivZNCC(f1, f2, ((int)x_lefAndRig[0] - (int)x_lefAndRig[1]), ((int)y_topAndBot[0] - (int)y_topAndBot[1]), Nxf1, Nxf2, Nyf1, Nyf2, aver1, aver2, D1, D2);
+                u1[p] = ZNCC[0]; v1[p] = ZNCC[1]; SNR[p][ii] = ZNCC[2];
+
+                for (int i = 0; i < Nyf1; ++i) 
+                {
+                    delete[] f1[i];
+                }                  
+                delete[] f1;
+                for (int i = 0; i < Nyf2; ++i)
+                {
+                    delete[] f2[i];
+                }
+                delete[] f2;
             }
 
 
             for (int i = 0; i < count; i++)
             {
-                u2.push_back(uPredict[i] + u1[i]);
-                v2.push_back(vPredict[i] + v1[i]);
+                u2[i] = uPredict[i] + u1[i];
+                v2[i] = vPredict[i] + v1[i];
             }
 
             //[u2, v2, error(:, 1)] = median_test([s_out name], u2, v2, error(:, 1), 2.0, 1 * bx, 1 * by);
@@ -265,8 +342,51 @@ void opticalMethod(cimg_library::CImg<unsigned int> image1, cimg_library::CImg<u
 
     }
 
-
     // -END - first iteration of displacement calculation
+
+    delete [] meshXint; delete [] meshYint;
+   /* delete [] x; delete [] y; delete [] dx; delete [] dy;
+    delete [] leftX; delete [] topY;*/
+    delete [] uPredict; delete [] vPredict;
+    delete [] u1; delete [] v1; delete [] u2; delete [] v2;
+    for (int i = 0; i < count; ++i)
+    {
+        delete[] SNR[i];
+    }
+    delete[] SNR;
+    delete[] Nx2; delete[] Ny2;
+    for (int i = 0; i < image1.height(); ++i)
+    {
+        delete[] im1[i];
+    }
+    delete[] im1;
+    for (int i = 0; i < image2.height(); ++i)
+    {
+        delete[] im2[i];
+    }
+    delete[] im2;
+    for (int i = 0; i < Iby; ++i)
+    {
+        delete[] GlobalSums11[i];
+        delete[] GlobalSums12[i];
+        delete[] GlobalSums21[i];
+        delete[] GlobalSums22[i];
+    }
+    delete[] GlobalSums11;
+    delete[] GlobalSums12;
+    delete[] GlobalSums21;
+    delete[] GlobalSums22;
+    for (int i = 0; i < Iby; ++i) {
+        for (int j = 0; j < Ibx; ++j) 
+        {
+            delete[] GSTable1[i][j];
+            delete[] GSTable2[i][j];
+        }
+        delete[] GSTable1[i];
+        delete[] GSTable2[i];
+    }
+    delete[] GSTable1;
+    delete[] GSTable2;
 
     velocityFile.close();
 

@@ -6,10 +6,17 @@
 
 
 
-std::vector<std::vector<std::vector<double>>> GST(std::vector<std::vector<double>> a, int Ny, int Nx) {
+double*** GST(double** a, int Ny, int Nx) {
 	// filling GST and GST of squares for fragment of the image
-	std::vector<std::vector<std::vector<double>>> GSTable;
-	GSTable = std::vector<std::vector<std::vector<double>>>(Ny + 1, std::vector<std::vector<double>>(Nx + 1, std::vector<double>(2)));
+	double*** GSTable;
+
+	GSTable = new double** [Ny + 1];
+	for (int i = 0; i < Ny + 1; ++i) {
+		GSTable[i] = new double* [Nx + 1];
+
+		for (int j = 0; j < Nx + 1; ++j)
+			GSTable[i][j] = new double[2];
+	}
 
 	double result1 = 0.0;
 	double result2 = 0.0;
@@ -44,8 +51,14 @@ std::vector<std::vector<std::vector<double>>> GST(std::vector<std::vector<double
 		}
 	}
 
-	std::vector<std::vector<std::vector<double>>> Result;
-	Result = std::vector<std::vector<std::vector<double>>>(Ny, std::vector<std::vector<double>>(Nx, std::vector<double>(2)));
+	double*** Result;
+	Result = new double** [Ny];
+	for (int i = 0; i < Ny; ++i) {
+		Result[i] = new double* [Nx];
+
+		for (int j = 0; j < Nx; ++j)
+			Result[i][j] = new double[2];
+	}
 
 	for (int i = 1; i <= Ny; i++)
 	{
@@ -56,21 +69,28 @@ std::vector<std::vector<std::vector<double>>> GST(std::vector<std::vector<double
 		}
 	}
 
+	for (int i = 0; i < Ny + 1; ++i) {
+		for (int j = 0; j < Nx + 1; ++j)
+		{
+			delete[] GSTable[i][j];
+		}
+		delete[] GSTable[i];
+	}
+	delete[] GSTable;
+
 	return Result;
 }
 
-std::vector<double> pivZNCC(std::vector<std::vector<double>> f1, std::vector<std::vector<double>> f2, int w0, int h0, int Nx1, int Nx2, int Ny1, int Ny2,
-	double aver1, double aver2, double D1, double D2) {
+double *pivZNCC(double** f1, double** f2, int w0, int h0, int Nx1, int Nx2, int Ny1, int Ny2, double aver1, double aver2, double D1, double D2) {
 	// the function defines the similarity function of images f1 and f2 and preliminary shifts (w and h)
 	// f1 - fragment 1th image
 	// f2 - fragment 2th image
 
 	double e = 0.000000001; // to avoid division by 0, log(-e), log(0)
 
-	std::vector<std::vector<double>> ff;
+	double** ff{ new double* [Ny2 - Ny1 + 1] {} };
 	for (int i = 0; i < Ny2 - Ny1 + 1; i++) {
-		std::vector<double> rowf(Nx2 - Nx1 + 1, 0.0);
-		ff.push_back(rowf);
+		ff[i] = new double[Nx2 - Nx1 + 1] {};
 	}
 
 	int NxROI = Nx2 - Nx1 + 1; // x-size of searching area
@@ -146,7 +166,7 @@ std::vector<double> pivZNCC(std::vector<std::vector<double>> f1, std::vector<std
 	//h = h + 1;
 
 	double max1ff = -1.0; double max2ff = -1.0;
-	double w = 0.0; double h = 0.0;
+	int w = 0; int h = 0;
 
 	for (int j = 1; j < Ny2 - Ny1; ++j) {
 		for (int i = 1; i < Nx2 - Nx1; ++i) {
@@ -176,6 +196,8 @@ std::vector<double> pivZNCC(std::vector<std::vector<double>> f1, std::vector<std
 	if (max2ff == -1) { max2ff = max1ff / 2.0; }
 	double SNR = max1ff / max2ff;
 
+	double w1; double h1;
+
 	// BEGIN - sub-pixel interpolation of correct shifts
 
 	double R2 = ff[h - 1][w - 1]; // FS in x in minimum (e is not subtracted to exclude the flat FS)
@@ -183,14 +205,19 @@ std::vector<double> pivZNCC(std::vector<std::vector<double>> f1, std::vector<std
 	double R3_w = ff[h - 1][w] - e; // FS in x on the right
 	double R1_h = ff[h - 2][w - 1] - e; // FS in y on the left
 	double R3_h = ff[h][w - 1] - e; // FS in y on the right
-	w = w + (R1_w - R3_w) / (2.0 * R1_w - 4.0 * R2 + 2.0 * R3_w); // sub-pixel interpolation
-	h = h + (R1_h - R3_h) / (2.0 * R1_h - 4.0 * R2 + 2.0 * R3_h); // sub-pixel interpolation
-
-
-	double w_exact = -(w0 - w + 1); // correction of the column number with the minimum value
-	double h_exact = h0 - h + 1; // correction of the row number with the minimum value
+	w1 = w + (R1_w - R3_w) / (2.0 * R1_w - 4.0 * R2 + 2.0 * R3_w); // sub-pixel interpolation
+	h1 = h + (R1_h - R3_h) / (2.0 * R1_h - 4.0 * R2 + 2.0 * R3_h); // sub-pixel interpolation
+	double w_exact = -(w0 - w1 + 1); // correction of the column number with the minimum value
+	double h_exact = h0 - h1 + 1; // correction of the row number with the minimum value
 	// END - sub-pixel interpolation of correct shifts
-	std::vector<double> res = { w_exact, h_exact, SNR };
+
+	for (int i = 0; i < Ny2 - Ny1 + 1; ++i)
+	{
+		delete[] ff[i];
+	}		
+	delete[] ff;
+
+	double res[3] = { w_exact, h_exact, SNR };
 	return res;
 }
 
